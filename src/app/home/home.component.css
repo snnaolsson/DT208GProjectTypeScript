@@ -1,0 +1,42 @@
+#about-div {
+    margin-bottom: 5%;
+    text-align: center;
+    position: relative;
+}
+
+#about-text {
+        width: 50vw;
+        margin: 0 auto;
+        z-index: 2;  
+        text-align: center;
+        position: absolute;  
+        top: 50%;  
+        left: 50%;  
+        transform: translate(-50%, -50%);  
+        background-color: rgba(255, 255, 255, 0.7);  
+        padding: 1em; 
+}
+
+#info-container {
+    width: 90%;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.info-div {
+    background-color: white;
+    padding: 3%;
+    width: 40%;
+}
+
+#heroImg {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: block;
+}
+.p-link{
+    font-weight: bolder;
+    font-style: italic;
+}

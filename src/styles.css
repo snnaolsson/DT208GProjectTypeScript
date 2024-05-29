@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+*{
+    padding: 0%;
+    margin: 0%;
+   overflow-x: hidden;
+}
+body{
+    background-color: #efe7e7;
+    color: #040f0f;
+   font-family: 'open sans', arial, sans-serif;
+}
+#container{
+    width: 70%;
+    margin: auto;
+    padding: 5%;
+}

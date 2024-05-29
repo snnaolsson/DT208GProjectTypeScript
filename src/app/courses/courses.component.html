@@ -1,1 +1,24 @@
-<p>courses works!</p>
+<div id="container">
+    <h1>Kurser</h1>
+
+    <div class="filterCourseList">
+        <label for="filter">Filtrera kurser: </label>
+        <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()">
+    </div>
+
+<div>
+<ul>
+    <li *ngFor="let course of courseList">
+        <div class="courses-result-div">
+            <span class="search-result-course-name">
+                <a href="{{course.syllabus}}">{{course.courseName}}, {{course.points}}&nbsp;hp</a>
+                </span>
+                <p>Kurskod: {{course.courseCode}}</p>
+                <p>Ämne: {{course.subject}}</p>
+
+                <button>Lägg till</button>
+        </div>
+    </li>
+</ul>
+</div>
+</div>

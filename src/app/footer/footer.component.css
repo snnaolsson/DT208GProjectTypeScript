@@ -1,0 +1,27 @@
+footer{
+    background-color: rgb(248, 246, 246);
+    color: #040f0f;
+    height: 200px;
+    
+}
+#footer-div{
+    width: 100%;
+    padding-left: 120px;
+    padding-top: 25px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+}
+.footer-info{
+    width: 30%;
+}
+.footer-links{
+    width: 30%;
+
+}
+.bold-title{
+    font-weight: bolder;
+}
