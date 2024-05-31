@@ -9,9 +9,18 @@
    overflow-x: hidden;
 }
 body{
-    background-color: #efe7e7;
-    color: #040f0f;
-   font-family: 'open sans', arial, sans-serif;
+    --bkg-color: #F1F1F1;
+    --txt-color: #040f0f;
+   
+}
+body.dark-theme{
+    --bkg-color: #040f0f;
+    --txt-color: #F1F1F1;
+}
+body{
+    background-color: var(--bkg-color);
+    color: var(--txt-color);
+    font-family: 'open sans', arial, sans-serif;
 }
 #container{
     width: 70%;

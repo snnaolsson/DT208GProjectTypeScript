@@ -13,9 +13,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class CoursesComponent {
   courseList: Course[] = [];
-  filteredCourses: Course[]=[];
-  filterValue : string='';
+  filteredCourses: Course[] = [];
+  filterValue: string="";
+  subjectList: string[] = [];
+  courseCounter: number = 0;
 
+  //PAIGINATION - FUNKAR EJ I DAGSLÄGET
+  currentPage: number = 1;
+  itemsPerPage: number = 10; //Antal kurser per sida
+  paginatedCourses: Course[] = []; // List for pagination
 
   constructor(private courseservice : CourseService){}
 
@@ -24,18 +30,132 @@ export class CoursesComponent {
     this.courseservice.getCourses().subscribe(data =>{
       this.courseList = data;
       this.filteredCourses = data;
+      this.subjectList = this.createSubjectList(data);
+      this.updateCourseCounter();
+
     })
   }
 
   //filtrerar kurserna utifrån sökfras och returnerar en array med kurser som uppfyller sökfrasen
   applyFilter():void{
     this.filteredCourses = this.courseList.filter((course)=>{
-      return(course.courseName.toLowerCase().includes(this.filterValue.toLocaleLowerCase())||course.courseCode.toLocaleLowerCase().includes(this.filterValue.toLocaleLowerCase())
-    );
+      
+      return(course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())||course.courseCode.toLocaleLowerCase().includes(this.filterValue.toLowerCase()));
+
     });
+
+    this.updateCourseCounter();
+
+  }
+  //metod med switchsats som kör olika metoder beroende på vilket option som är valt i selectlistan 
+  onSelect(event: Event):void{
+    let selectElement = event.target as HTMLSelectElement;
+    let selectedValue = selectElement.value;
+    
+    switch(selectedValue){
+      case 'code':
+        this.sortCode();
+        break;
+       case 'name':
+        this.sortName();
+        break;
+       case 'progressionDesc':
+        this.sortProgDesc();
+        break;
+       case 'progressionAsc':
+        this.sortProgAsc();
+        break; 
+       case 'hpAsc':
+        this.sortHpDesc(); 
+        break;
+       case 'hpDesc':
+        this.sortHpAsc();
+        break;  
+       case 'subject': 
+       this.sortSub();
+       break;
+       default:
+        this.sortSubject(selectedValue);
+       break;    
+    }
+  }
+//sorterar på kurskod
+  sortCode():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => a.courseCode.localeCompare(b.courseCode));
+    this.updateCourseCounter();
+
+  }
+  //sorterar på namn
+  sortName():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => a.courseName.localeCompare(b.courseName));
+    this.updateCourseCounter();
+
+  }
+  //sorterar på progression, descending
+  sortProgDesc():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => b.progression.localeCompare(a.progression));
+    this.updateCourseCounter();
+
+  }
+  //sortar på progression, ascending
+  sortProgAsc():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => a.progression.localeCompare(b.progression));
+    this.updateCourseCounter();
+
+  }
+  //sorterar på hp, ascending
+  sortHpAsc():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => b.points - a.points);
+    this.updateCourseCounter();
+
+  }
+  //sorterar på hp, descending
+  sortHpDesc():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => a.points - b.points);
+    this.updateCourseCounter();
+
+  }
+  //sorterar på ämne
+  sortSub():void{
+    this.filteredCourses = [...this.filteredCourses].sort((a, b) => a.subject.localeCompare(b.subject));
+    this.updateCourseCounter();
   }
 
 
+  //skapar en array med de ämnen som finns för att kunna använda som alternativ i select-listan
+  createSubjectList(courses: Course[]):string[]{
+    const subjects = courses.map(course=>course.subject);
+    return Array.from(new Set(subjects));
+  }
 
+ 
+//filtrerar kurser utifrån valt ämne 
+  sortSubject(subject:string):void{
+    if (subject) {
+      this.filteredCourses = this.courseList.filter(course => course.subject === subject);
+     
+    } else {
+      this.filteredCourses = this.courseList;
+    }
+    this.updateCourseCounter();
+  }
+
+//uppdaterar kursräknaren
+  updateCourseCounter(): void {
+    this.courseCounter = this.filteredCourses.length;
+  }
+
+
+  //sparar kurser till localstorage
+  saveToSchedule(course: Course): void {
+    let schedule = JSON.parse(localStorage.getItem('schedule') || '[]');
+    if (!schedule.some((c: Course) => c.courseCode === course.courseCode)) {
+      schedule.push(course);
+      localStorage.setItem('schedule', JSON.stringify(schedule));
+    }
+console.log(schedule);
+}
+  
 
 }
+

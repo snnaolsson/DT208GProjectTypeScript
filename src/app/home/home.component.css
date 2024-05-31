@@ -22,10 +22,11 @@
     display: flex;
     margin: auto;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .info-div {
-    background-color: white;
+    background-color: #FAFAFA;
     padding: 3%;
     width: 40%;
 }
@@ -40,3 +41,4 @@
     font-weight: bolder;
     font-style: italic;
 }
+

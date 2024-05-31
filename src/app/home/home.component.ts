@@ -12,12 +12,19 @@ import { Course } from '../model/course';
 })
 export class HomeComponent {
   courseList: Course[] = [];
+  subjectList: string[] = [];
 
   constructor(private courseservice : CourseService){}
 
   ngOnInit(){
     this.courseservice.getCourses().subscribe(data=>{
       this.courseList = data;
+      this.subjectList = this.createSubjectList(data);
     })
+  }
+
+  createSubjectList(courses: Course[]):string[]{
+    const subjects = courses.map(course=>course.subject);
+    return Array.from(new Set(subjects));
   }
 }

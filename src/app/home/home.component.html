@@ -25,5 +25,14 @@
         <br>
         <p><a class="p-link">Här hittar du all information du behöver.</a></p>
     </div>
+    <div class="info-div-big">
+        <h3>Vi erbjuder kurser inom följande ämnen: </h3>
+        <ul>
+            <li *ngFor="let subject of subjectList">
+                {{subject}}
+            </li>
+        </ul>
     </div>
+    </div>
+
 </div>

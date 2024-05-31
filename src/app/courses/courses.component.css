@@ -1,0 +1,48 @@
+.courses-result-div{
+    background-color: #FAFAFA;
+    margin-bottom: 5px;
+    padding: 15px;
+    border: 1px rgb(143, 135, 135) SOLID;
+}
+.search-result-course-name{
+    font-weight: 600;
+}
+.addBtn{
+    padding: 5px 25px;
+    float: right;
+    cursor: pointer;
+}
+.filterCourseList{
+    padding-bottom: 10px;
+}
+#sortingContainer{
+    display: flex;
+}
+.filterCourseList input{
+    width: 94.5%;
+    height: 1.5rem;
+} 
+#sortBy, #sortBySubject{
+    padding-bottom: 10px;
+    width: 60%;
+}
+#sortBy select{
+    width: 97%;
+}
+
+#sortBySubject select{
+    width: 97%;
+}
+.filterCourseList label, #sortBy label, #sortBySubject label{
+    font-weight: 700;
+}
+#courseCount{
+    margin-bottom: 10px;
+}
+.weight-bold{
+    font-weight: 700;
+}
+h1{
+    margin-bottom: 25px;
+}
+ 

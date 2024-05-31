@@ -2,23 +2,51 @@
     <h1>Kurser</h1>
 
     <div class="filterCourseList">
-        <label for="filter">Filtrera kurser: </label>
+        <label for="filter">Sök: </label>
         <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()">
+    </div>
+    <div id="sortingContainer">
+    <div id="sortBy">
+        <label for="sortBy">Sortera på: </label>
+        <select name="sortBy" id="sortBy" (change)="onSelect($event)">
+            <option value="code">Kurskod</option>
+            <option value="name">Kursnamn</option>
+            <option value="hpDesc">Högskolepoäng, hög-låg</option>
+            <option value="hpAsc">Högskolepoäng, låg-hög</option>
+            <option value="progressionDesc">Progression, hög-låg</option>
+            <option value="progressionAsc">Progression, låg-hög</option>
+            <option value="subject">Ämne</option>
+        </select>
+    </div>
+    <div id="sortBySubject">
+        <label for="sortBySubject">Ämne: </label>
+        <select name="sortBySubject" id="sortBySubject" (change)="onSelect($event)">
+            <option value="">Alla</option>
+            <option *ngFor="let subject of subjectList" value="{{subject}}">{{subject}}</option>
+        </select>
+    </div>
+    </div>
+    <div id="courseCount">
+        <p><span class="weight-bold">Antal kurser: </span>{{courseCounter}}</p>
     </div>
 
 <div>
 <ul>
-    <li *ngFor="let course of courseList">
+    <li *ngFor="let course of filteredCourses">
         <div class="courses-result-div">
             <span class="search-result-course-name">
                 <a href="{{course.syllabus}}">{{course.courseName}}, {{course.points}}&nbsp;hp</a>
                 </span>
                 <p>Kurskod: {{course.courseCode}}</p>
                 <p>Ämne: {{course.subject}}</p>
+                <p>Progression: {{course.progression}}</p>
 
-                <button>Lägg till</button>
+                <button class="addBtn" (click)="saveToSchedule(course)">Lägg till</button>
         </div>
     </li>
 </ul>
 </div>
+<div id="paigeControls">
+
+  </div>
 </div>
