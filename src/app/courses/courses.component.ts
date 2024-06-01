@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ToastComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
+  @ViewChild(ToastComponent, {static: false}) toast!: ToastComponent;
+
   courseList: Course[] = [];
   filteredCourses: Course[] = [];
   filterValue: string="";
@@ -152,10 +155,9 @@ export class CoursesComponent {
     if (!schedule.some((c: Course) => c.courseCode === course.courseCode)) {
       schedule.push(course);
       localStorage.setItem('schedule', JSON.stringify(schedule));
+      this.toast.showMessage(`${course.courseName} sparad till ramschema`);
     }
 console.log(schedule);
 }
-  
-
 }
 
