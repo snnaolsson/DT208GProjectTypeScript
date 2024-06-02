@@ -27,4 +27,6 @@ export class HomeComponent {
     const subjects = courses.map(course=>course.subject);
     return Array.from(new Set(subjects));
   }
+  
 }
+

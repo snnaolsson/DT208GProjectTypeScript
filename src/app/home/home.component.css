@@ -26,7 +26,7 @@
 }
 
 .info-div {
-    background-color: #FAFAFA;
+    background-color: #F7F3F3;
     padding: 3%;
     width: 40%;
 }
@@ -41,4 +41,11 @@
     font-weight: bolder;
     font-style: italic;
 }
+
+.info-div-big{
+    margin-top: 30px;
+    text-align: center;
+}
+  
+
 

@@ -27,11 +27,7 @@
     </div>
     <div class="info-div-big">
         <h3>Vi erbjuder kurser inom följande ämnen: </h3>
-        <ul>
-            <li *ngFor="let subject of subjectList">
-                {{subject}}
-            </li>
-        </ul>
+              <span *ngFor="let subject of subjectList">{{ subject }} &nbsp;&bull;&nbsp;</span>
     </div>
     </div>
 
