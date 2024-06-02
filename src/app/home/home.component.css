@@ -47,6 +47,17 @@
     text-align: center;
 }
 
+@media (max-width: 700px) {
+#info-container{
+    display: block;
+}
+.info-div{
+    width: 95%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+  }
   
 
 

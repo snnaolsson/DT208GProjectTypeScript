@@ -82,4 +82,8 @@ h1{
     #scheduleAside{
         background-color: transparent;
     }
+    #coursesDiv{
+        width: 95%;
+        margin: auto;
+    }
 }
