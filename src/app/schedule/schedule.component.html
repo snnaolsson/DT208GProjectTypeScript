@@ -1,10 +1,25 @@
-<div>
-    <h2>Ramschema</h2>
-    <ul>
-      <li *ngFor="let course of schedule">
-        {{ course.courseName }} ({{ course.points }} poäng)
-        <button (click)="removeCourse(course.courseCode)">Ta bort</button>
-      </li>
-    </ul>
-    <button (click)="clearSchedule()">Rensa ramschemat</button>
+<div id="container">
+  <h1>Ramschema</h1>
+  <table class="table-responsive">
+    <thead>
+      <tr>
+        <th>Kursnamn</th>
+        <th>Poäng</th>
+        <th>Åtgärder</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of schedule">
+        <td><a href="{{course.syllabus}}">{{ course.courseName }}</a></td>
+        <td><p>{{ course.points }}&nbsp;hp</p></td>
+        <td>
+          <button class="deleteBtn" (click)="removeCourse(course.courseCode)">Ta bort</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="sumPoints">
+    <p>Antal högskolepoäng: {{ totalPoints }} </p>
   </div>
+  <button id="clearBtn" (click)="clearSchedule()">Rensa ramschemat</button>
+</div>

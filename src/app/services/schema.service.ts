@@ -31,4 +31,5 @@ getSchedule(): any[] {
     localStorage.removeItem(this.localStorageKey);
   }
 
+
 }

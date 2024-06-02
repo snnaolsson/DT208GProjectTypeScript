@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ScheduleComponent {
   schedule: any[] = [];
+  totalPoints: number = 0;
   constructor(private schemaservice : SchemaService){}
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class ScheduleComponent {
 
     loadSchedule(): void {
       this.schedule = this.schemaservice.getSchedule();
+      this.calculateTotalPoints();
     }
 
     removeCourse(courseCode: string): void {
@@ -28,6 +30,13 @@ export class ScheduleComponent {
     clearSchedule(): void {
       this.schemaservice.clearSchedule();
       this.loadSchedule();
+    }
+
+    updateSchedule():void{
+      this.loadSchedule();
+    }
+    calculateTotalPoints(): void {
+      this.totalPoints = this.schedule.reduce((acc, course) => acc + course.points, 0);
     }
 
 }

@@ -7,10 +7,18 @@
 .search-result-course-name{
     font-weight: 600;
 }
+a{
+    color: black;
+}
 .addBtn{
     padding: 5px 25px;
     float: right;
     cursor: pointer;
+    border: 1px solid #756868;
+}
+.addBtn:hover{
+    background-color: #b0e6a7;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 .filterCourseList{
     padding-bottom: 10px;
@@ -44,5 +52,34 @@
 }
 h1{
     margin-bottom: 25px;
+    width: 100%;
 }
- 
+#container{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+#scheduleAside{
+    width: 40%;
+    margin-left: 10px;
+    border-left: solid 1px rgb(205, 184, 184);
+}
+#schemaComp{
+    position: fixed;
+    height: 50vh;
+}
+
+#coursesDiv{
+    width: 55%;
+    margin-right: 10px;
+}
+@media (max-width: 1000px) {
+    .hide-on-small-screens {
+      display: none;
+    }
+    #scheduleAside{
+        background-color: transparent;
+    }
+}

@@ -1,19 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastComponent } from '../toast/toast.component';
+import { ScheduleComponent } from '../schedule/schedule.component';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule, FormsModule, ToastComponent],
+  imports: [CommonModule, FormsModule, ToastComponent, ScheduleComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
   @ViewChild(ToastComponent, {static: false}) toast!: ToastComponent;
+  @ViewChild(ScheduleComponent, {static: false}) schedule!: ScheduleComponent;
+
+  isSmallScreen: boolean = window.innerWidth < 1000;
 
   courseList: Course[] = [];
   filteredCourses: Course[] = [];
@@ -37,6 +41,11 @@ export class CoursesComponent {
       this.updateCourseCounter();
 
     })
+  }
+//Lyssnar efter om skärmstorleken förrändras och om bredden är under 1000px = issmallscreen sätts till true
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = event.target.innerWidth < 1000;
   }
 
   //filtrerar kurserna utifrån sökfras och returnerar en array med kurser som uppfyller sökfrasen
@@ -149,15 +158,18 @@ export class CoursesComponent {
   }
 
 
-  //sparar kurser till localstorage
+  //sparar kurser till localstorage, skriver ut meddelandet om att kurs är tillagd och uppdaterar ramschemat
   saveToSchedule(course: Course): void {
     let schedule = JSON.parse(localStorage.getItem('schedule') || '[]');
     if (!schedule.some((c: Course) => c.courseCode === course.courseCode)) {
       schedule.push(course);
       localStorage.setItem('schedule', JSON.stringify(schedule));
+      this.schedule.updateSchedule();
       this.toast.showMessage(`${course.courseName} sparad till ramschema`);
+
+      
     }
-console.log(schedule);
 }
+
 }
 

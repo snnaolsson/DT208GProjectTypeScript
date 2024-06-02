@@ -1,6 +1,7 @@
 <div id="container">
+    
+<div id="coursesDiv">
     <h1>Kurser</h1>
-
     <div class="filterCourseList">
         <label for="filter">Sök: </label>
         <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()">
@@ -47,6 +48,12 @@
 </ul>
 <app-toast></app-toast>
 </div>
+</div>
+<aside id="scheduleAside">
+    <div id="schemaComp">
+   <app-schedule [ngClass]="{'hide-on-small-screens': isSmallScreen}"></app-schedule>
+    </div>
+</aside>
 <div id="paigeControls">
 
   </div>
