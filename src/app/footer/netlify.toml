@@ -1,0 +1,9 @@
+[build]
+base = "/"
+command = "ng build"
+publish="dist/anglar1/browser"
+
+[[redirects]]
+from="/*"
+to= "/index.html"
+status = 200

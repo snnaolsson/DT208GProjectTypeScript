@@ -25,3 +25,8 @@ footer{
 .bold-title{
     font-weight: bolder;
 }
+@media screen and (max-width: 1000){
+    #footer-div{padding-left: 0px;
+        }
+    
+}
