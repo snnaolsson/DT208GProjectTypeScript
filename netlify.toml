@@ -1,7 +1,7 @@
 [build]
 base = "/"
 command = "ng build"
-publish="dist/projecttypescript/browser"
+publish="dist/project-type-script/browser"
 
 [[redirects]]
 from="/*"
